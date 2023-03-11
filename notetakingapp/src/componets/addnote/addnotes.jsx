@@ -39,8 +39,8 @@ function Note() {
               placeholder='Enter Your notes here'
               onChange={(e) => setNote(e.target.value)}
               ></textarea>
-                <div className="note-btn">
-            <button className='save' onClick={saveNote}>Save</button>
+            <div className="note-btn">
+              <button className='save' onClick={saveNote}>Save</button>
           </div>
             </div>
         <div className='border-box'>
