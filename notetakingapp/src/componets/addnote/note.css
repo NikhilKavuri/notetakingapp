@@ -1,0 +1,65 @@
+
+  
+  .note-item {
+    background-color: #FFDDD2;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    width: calc(33.33% - 10px);
+    
+  }
+  .note1{
+    overflow-y: hidden;
+  }
+  .border-box{
+    overflow: hidden;
+    border: 10px;
+    padding: 30px;
+    max-width: 80%;
+    position:relative;
+    left: 155px;
+    top: 20px;
+    background-color: #FFB9B9;
+  }
+  .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    margin-bottom: 20px;
+    /* max-height: 100px; */
+  }
+.delete{
+    position: relative;
+    left: 140px;
+    height: 0px;
+    width: 0px;
+    border: 0;
+    z-index: 500;
+    background-color: #FFDDD2;
+}
+  .no-notes {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .text{
+    resize: none;
+    background-color: #FFACC7;
+    position: relative;
+    width: 80%;
+    height: 250px;
+    color: rgb(0, 0, 0);
+  }
+  .save{
+    background-color: #f968b3;
+    color: rgb(255, 241, 241);
+    border-radius: 30%;
+    position: relative;
+    right:550px;
+    bottom: 40px;
+    border: 2px solid rgb(199, 152, 152);
+  }
+  .date{
+    position: relative;
+    top: 45px;
+    right: 130px;
+  }
