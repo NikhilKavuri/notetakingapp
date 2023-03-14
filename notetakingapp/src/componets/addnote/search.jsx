@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './note.css';
-function Search({ notes, setFilteredNotes, setSearchText }) {
+
+function Search({ notes, setFilteredNotes }) {
+  const [searchText, setSearchText] = useState('');
+
   const handleSearch = (event) => {
-    if (event.key === 'Enter') {
-      const searchValue = event.target.value.trim().toLowerCase();
-      setSearchText(searchValue);
-      const filteredNotes = notes.filter((note) =>
-        note.content.toLowerCase().includes(searchValue)
-      );
-      setFilteredNotes(filteredNotes);
-    }
+    const searchValue = event.target.value.trim().toLowerCase();
+    setSearchText(searchValue);
+    const filtered = notes.filter((note) =>
+      note.content.toLowerCase().includes(searchValue)
+    );
+    setFilteredNotes(filtered);
   };
+  
+  const handleKeyUp = (event) => {
+    if (searchText.length===0) {
+      setSearchText('');
+      setFilteredNotes(notes);
+      console.log(event.key);
+  }
+  };
+  
 
   return (
     <div>
       <input
-      className='search'
+        className='search'
         type="text"
         placeholder="Search Notes"
-        onKeyDown={handleSearch}
+        value={searchText}
+        onInput={handleSearch}
+        onKeyUp={handleKeyUp}
       />
     </div>
   );
 }
+
 export default Search;
