@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
-import './note.css';
+import React, { useState, useEffect } from "react";
+import "./note.css";
+import * as keycode from 'keycode-js';
 
-function Search({ notes, setFilteredNotes }) {
-  const [searchText, setSearchText] = useState('');
+function Search({ savedNotes, setFilteredNotes, onSearch }) {
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    setFilteredNotes(savedNotes);
+  }, [savedNotes, setFilteredNotes]);
 
   const handleSearch = (event) => {
-    const searchValue = event.target.value.trim().toLowerCase();
-    setSearchText(searchValue);
-    const filtered = notes.filter((note) =>
-      note.content.toLowerCase().includes(searchValue)
-    );
-    setFilteredNotes(filtered);
-  };
-  
-  const handleKeyUp = (event) => {
-    if (searchText.length===0) {
-      setSearchText('');
-      setFilteredNotes(notes);
-      console.log(event.key);
-  }
-  };
-  
+    const {
+      target: { value },
+    } = event;
 
+    const searchValue = value.trim().toLowerCase();
+    setSearchText(searchValue);
+    onSearch(searchValue); // pass the search value up to parent component
+
+    if (keycode(event) === "backspace" && searchText.length === 1) {
+      setFilteredNotes(savedNotes); // display all notes
+    } else {
+      const filtered = savedNotes.filter((note) =>
+        note.content.toLowerCase().includes(searchValue)
+      );
+      setFilteredNotes(filtered); // display filtered notes
+    }
+  };
   return (
     <div>
       <input
-        className='search'
+        className="search"
         type="text"
         placeholder="Search Notes"
         value={searchText}
-        onInput={handleSearch}
-        onKeyUp={handleKeyUp}
+        onChange={handleSearch}
       />
     </div>
   );
